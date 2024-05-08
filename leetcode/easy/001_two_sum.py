@@ -34,14 +34,33 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 """
 
 from typing import List
+import unittest
+
+class Solution:
+    def two_sum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, val in enumerate(nums):
+            remaining = target-val
+
+            if remaining in seen:
+                return [seen[remaining], i]
+            else:   
+                seen[val] = i
 
 
-def twoSum(nums: List[int], target: int) -> List[int]:
-    seen = {}
-    for i, val in enumerate(nums):
-        remaining = target-val
+class TestSolution(unittest.TestCase):
+    def test_simple_positive_integers(self):
+        solution = Solution()
+        nums = [2, 7, 11, 15]
+        target = 9
+        self.assertEqual(solution.two_sum(nums, target), [0, 1])
 
-        if remaining in seen:
-            return [seen[remaining], i]
-        else:   
-            seen[val] = i
+    def test_negative_integers(self):
+        solution = Solution()
+        nums = [-2, -3, -5, -1]
+        target = -8
+        self.assertEqual(solution.two_sum(nums, target), [1, 2])
+
+
+if __name__ == "__main__":
+    unittest.main()
