@@ -32,7 +32,7 @@ Follow up: Could you solve it without converting the integer to a string?
 
 def isPalindrome(x: int) -> bool:
     str_converted = str(x)
-    str_reversed = str_converted[:-1]
+    str_reversed = str_converted[::-1]
     print(str_reversed)
     if str_converted == str_reversed:
         return True
